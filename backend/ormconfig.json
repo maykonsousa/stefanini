@@ -1,0 +1,21 @@
+{
+    "name": "default",
+    "type": "sqlite",
+    "database": "src/database/db.sqlite3",
+    "autoSchemaSync": true,
+    "entities": [
+      "src/models/*.ts"
+    ],
+
+    "migrations": [
+      "src/database/migrations/*.ts"
+    ],
+    "logging": {
+      "logQueries": true
+    },
+    "cli": {
+      "entitiesDir": "src/models",
+      "migrationsDir": "src/database/migrations"
+
+    }
+  }
