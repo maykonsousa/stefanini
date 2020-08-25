@@ -1,8 +1,11 @@
 import { Router } from 'express';
 import CreateProfileService from '../services/profiles/createProfileService';
+import authentication from '../middlewares/Authentication';
 
 const profileRoutes = Router();
+profileRoutes.use(authentication);
 
+// criar perfil
 profileRoutes.post('/', async (req, res) => {
     try {
         const { name } = req.body;

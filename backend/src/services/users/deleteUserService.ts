@@ -2,18 +2,18 @@ import { getRepository } from 'typeorm';
 import ModelUser from '../../models/ModelUser';
 
 interface RequestDTO {
-    user_id: object;
-    actionUser: object;
+    id: string;
 }
 
 class deleteUserService {
-    public async execute({ user_id, actionUser }: RequestDTO): Promise<void> {
-        const userRepository = await getRepository(ModelUser);
-        const findActionuser = userRepository.findOne({
-            where: { actionUser },
-        });
+    public async execute({ id }: RequestDTO): Promise<void> {
+        const userRepository = getRepository(ModelUser);
 
-        console.log(findActionuser);
+        const user = await userRepository.findOne(id);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        await userRepository.remove(user);
     }
 }
 
