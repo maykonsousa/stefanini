@@ -57,7 +57,7 @@ usersRouter.get('/', async (req, res) => {
 usersRouter.put('/:id', async (req, res) => {
     try {
         const { username, name, email, password, profile } = req.body;
-        const id = req.params;
+        const { id } = req.params;
         const updateUser = new UpdateUserService();
         const user: ModelUser = await updateUser.execute({
             id,
