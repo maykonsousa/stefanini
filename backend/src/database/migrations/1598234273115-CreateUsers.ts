@@ -18,10 +18,7 @@ export default class CreateUsers1598234273115 implements MigrationInterface {
                         isPrimary: true,
                         default: 'uuid_generate_v4()',
                     },
-                    {
-                        name: 'username',
-                        type: 'varchar',
-                    },
+
                     {
                         name: 'name',
                         type: 'varchar',
@@ -38,6 +35,7 @@ export default class CreateUsers1598234273115 implements MigrationInterface {
                     {
                         name: 'profile',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',
@@ -59,6 +57,7 @@ export default class CreateUsers1598234273115 implements MigrationInterface {
                 columnNames: ['profile'],
                 referencedColumnNames: ['name'],
                 referencedTableName: 'profiles',
+                onDelete: 'SET NULL',
             }),
         );
     }

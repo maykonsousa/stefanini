@@ -26,6 +26,7 @@ export default class CreateFunctionalities1598235977173
                     {
                         name: 'profile',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',
@@ -48,6 +49,7 @@ export default class CreateFunctionalities1598235977173
                 columnNames: ['profile'],
                 referencedColumnNames: ['name'],
                 referencedTableName: 'profiles',
+                onDelete: 'SET NULL',
             }),
         );
     }

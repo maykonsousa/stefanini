@@ -14,7 +14,11 @@ export default class CreateProfile1598232402055 implements MigrationInterface {
                         default: 'uuid_generate_v4()',
                     },
 
-                    { name: 'name', type: 'varchar', isUnique: true },
+                    {
+                        name: 'name',
+                        type: 'varchar',
+                        isUnique: true,
+                    },
                     {
                         name: 'created_at',
                         type: 'timestamp',

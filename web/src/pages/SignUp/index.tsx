@@ -13,11 +13,9 @@ import api from '../../services/api';
 import { UseToast } from '../../hooks/Toast';
 
 interface FormData {
-  username: string;
   name: string;
   email: string;
   password: string;
-  profile: string;
 }
 
 const SignUp: React.FC = () => {
@@ -80,15 +78,9 @@ const SignUp: React.FC = () => {
           <img src={LogoImg} alt="AlmoxApp" />
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu Cadastro</h1>
-            <Input
-              name="username"
-              icon={FiGithub}
-              placeholder="GitHub Username"
-            />
 
             <Input name="name" icon={FiUser} placeholder="Nome" />
             <Input name="email" icon={FiMail} placeholder="E-mail" />
-            <Input name="profile" icon={FiMail} placeholder="perfil" />
             <Input
               name="password"
               icon={FiLock}
