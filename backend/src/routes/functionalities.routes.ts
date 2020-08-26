@@ -4,6 +4,7 @@ import authentication from '../middlewares/Authentication';
 import ModelFunctionality from '../models/ModelFunctionalities';
 
 import CreateFunctionalityService from '../services/Functionalities/CreateFunctionalitiesService';
+import DeleleFunctionalityService from '../services/Functionalities/DeleteFunctionalityService';
 
 const functionalitiesRoutes = Router();
 functionalitiesRoutes.use(authentication);
@@ -30,14 +31,15 @@ functionalitiesRoutes.get('/', async (req, res) => {
     return res.json(functionalities);
 });
 
-// editar funcionalidades
-functionalitiesRoutes.put('/:id', async (req, res) => {
+// deletar funciojnalidade
+functionalitiesRoutes.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, profile } = req.body;
-        const updateFunctionality = new UpdateFunctionalityService();
-        const functionality = await updateFunctionality.execute();
-    } catch (error) {}
+        const deleteFuncionality = new DeleleFunctionalityService();
+        await deleteFuncionality.execute({ id });
+        return res.status(200).json({ success: 'functionality deleted' });
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
 });
-
 export default functionalitiesRoutes;
