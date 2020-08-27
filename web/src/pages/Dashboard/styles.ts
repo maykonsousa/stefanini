@@ -27,7 +27,7 @@ export const Card = styled.div`
   padding: 22px 32px;
   border-radius: 5px;
   ${props =>
-    props.className === 'income' &&
+    props.className === 'users' &&
     css`
       color: #fff;
       background: #43cea2;
@@ -36,7 +36,7 @@ export const Card = styled.div`
     `}
 
   ${props =>
-    props.className === 'outcome' &&
+    props.className === 'profiles' &&
     css`
       color: #fff;
       background: #fe8c00;
@@ -45,7 +45,7 @@ export const Card = styled.div`
     `}
 
     ${props =>
-      props.className === 'stock' &&
+      props.className === 'functionalities' &&
       css`
         color: #fff;
         background: #4b6cb7;

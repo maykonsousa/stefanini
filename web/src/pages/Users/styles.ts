@@ -1,4 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+import { shade } from 'polished';
 
 interface CardProps {
   className: string;
@@ -9,6 +11,53 @@ export const Container = styled.div`
   max-width: 1120px;
   margin: 0 auto;
   padding: 40px 20px;
+`;
+const AppearRightToLeft = keyframes`
+  from{
+    opacity: 0;
+    transform: translateX(50px)
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0)
+  }
+  `;
+export const AnimatedContainer = styled.div`
+  > a {
+    text-align: center;
+    color: #ff9000;
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: 0.2s;
+
+    svg {
+      margin-right: 16px;
+    }
+    :hover {
+      color: ${shade(0.4, '#ff9000')};
+    }
+  }
+  animation: ${AppearRightToLeft} 1s;
+`;
+export const Content = styled.div`
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+`;
+
+export const UsersContainer = styled.div`
+  margin-left: 20px;
+  border: red solid 1px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 32px;
+`;
+
+export const CardUser = styled.div`
+  border: red solid 1px;
 `;
 
 export const Title = styled.h1`

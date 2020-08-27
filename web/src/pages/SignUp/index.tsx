@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
-import { FiUpload, FiMail, FiLock, FiUser, FiGithub } from 'react-icons/fi';
+import { FiUpload, FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import { Container, Content, Background, AnimatedContainer } from './styles';
 import Input from '../../components/Input';
@@ -28,9 +28,6 @@ const SignUp: React.FC = () => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          profile: Yup.string().required('campo obrigatório'),
-
-          username: Yup.string().required('campo obrigatório'),
           name: Yup.string().required('Nome Obrigatório'),
           email: Yup.string()
             .email('Digite um email válido')
