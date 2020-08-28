@@ -22,6 +22,7 @@ const AppearRightToLeft = keyframes`
     transform: translateX(0)
   }
   `;
+
 export const AnimatedContainer = styled.div`
   > a {
     text-align: center;
@@ -47,7 +48,7 @@ export const Content = styled.div`
   display: flex;
 `;
 
-export const UsersContainer = styled.div`
+export const ProfilesContainer = styled.div`
   margin-left: 20px;
   width: 100vw;
   display: grid;
@@ -55,7 +56,7 @@ export const UsersContainer = styled.div`
   grid-gap: 10px;
 `;
 
-export const CardUser = styled.div`
+export const CardProfile = styled.div`
   margin: 12px;
   width: 300px;
   height: 150px;
@@ -86,7 +87,7 @@ export const CardUser = styled.div`
   }
   h1 {
     font-size: 36px;
-    padding: 10px;
+    padding: 30px;
     padding-top: 30px;
   }
   p {
@@ -157,52 +158,5 @@ export const Card = styled.div`
     font-size: 36px;
     font-weight: normal;
     line-height: 54px;
-  }
-`;
-
-export const TableContainer = styled.section`
-  margin-top: 64px;
-
-  table {
-    width: 100%;
-    border-spacing: 0 8px;
-
-    th {
-      color: #969cb3;
-      font-weight: normal;
-      padding: 20px 32px;
-      text-align: left;
-      font-size: 16px;
-      line-height: 24px;
-    }
-
-    td {
-      padding: 20px 32px;
-      border: 0;
-      background: #fff;
-      font-size: 16px;
-      font-weight: normal;
-      color: #969cb3;
-
-      &.title {
-        color: #363f5f;
-      }
-
-      &.income {
-        color: #12a454;
-      }
-
-      &.outcome {
-        color: #e83f5b;
-      }
-    }
-
-    td:first-child {
-      border-radius: 8px 0 0 8px;
-    }
-
-    td:last-child {
-      border-radius: 0 8px 8px 0;
-    }
   }
 `;

@@ -2,14 +2,7 @@ import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { FormHandles } from '@unform/core';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import {
-  FiMail,
-  FiUser,
-  FiLock,
-  FiPenTool,
-  FiEdit,
-  FiTrash2,
-} from 'react-icons/fi';
+import { FiUser, FiLock, FiPenTool, FiEdit, FiTrash2 } from 'react-icons/fi';
 
 import { Form } from '@unform/web';
 
@@ -26,24 +19,23 @@ import {
   CardContainer,
   Card,
   Content,
-  UsersContainer,
+  ProfilesContainer,
   AnimatedContainer,
-  CardUser,
+  CardProfile,
 } from './styles';
 
 interface FormData {
   id: string;
   name: string;
-  email: string;
-  profile: string;
 }
-const Users: React.FC = () => {
-  const [users, setUsers] = useState<FormData[]>([]);
+const Profiles: React.FC = () => {
+  const [profiles, setProfiles] = useState<FormData[]>([]);
   useEffect(() => {
-    api.get('users').then(response => {
-      setUsers(response.data);
+    api.get('profiles').then(response => {
+      setProfiles(response.data);
     });
-  }, []);
+  }, [profiles]);
+
   const formRef = useRef<FormHandles>(null);
   const { addToast } = UseToast();
 
@@ -53,21 +45,18 @@ const Users: React.FC = () => {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome Obrigatório'),
-          profile: Yup.string().required('Nome Obrigatório'),
-          email: Yup.string()
-            .email('Digite um email válido')
-            .required('email obrigatório'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
-        await api.post('/users', data);
+        await api.post('/profiles', data);
+        setProfiles([...profiles, data]);
 
         addToast({
           type: 'success',
           title: 'Cadastro efetuado com sucesso',
-          description: `Usuário ${data.name} cadastrado`,
+          description: `Perfil de usuário ${data.name} cadastrado`,
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -78,21 +67,21 @@ const Users: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Falha no cadastro',
-          description: 'Perfil inexistente',
+          description: 'tente novamente!',
         });
       }
     },
     [addToast],
   );
 
-  async function handleDeleteUser(id: string) {
+  async function handleDeleteProfile(id: string) {
     try {
-      await api.delete(`users/${id}`);
-      setUsers(users.filter(user => user.id !== id));
+      await api.delete(`profiles/${id}`);
+      setProfiles(profiles.filter(profile => profile.id !== id));
     } catch (error) {
       addToast({
         type: 'error',
-        title: 'Falha ao deletar usuário',
+        title: 'Falha ao deletar perfil',
         description: 'tente novamente',
       });
     }
@@ -131,41 +120,37 @@ const Users: React.FC = () => {
       <Content>
         <AnimatedContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Inserir Usuário</h1>
+            <h1>Cadastrar perfil</h1>
 
             <Input name="name" icon={FiUser} placeholder="Nome" />
-            <Input name="email" icon={FiMail} placeholder="E-mail" />
-            <Input name="profile" icon={FiLock} placeholder="Perfil" />
 
             <Button type="submit">Cadastrar</Button>
           </Form>
         </AnimatedContainer>
 
-        <UsersContainer>
-          {users.map(user => (
-            <CardUser key={user.id}>
+        <ProfilesContainer>
+          {profiles.map(profile => (
+            <CardProfile key={profile.id}>
               <div>
                 <button type="button">
                   <FiEdit />
                 </button>
                 <button
                   onClick={() => {
-                    handleDeleteUser(user.id);
+                    handleDeleteProfile(profile.id);
                   }}
                   type="button"
                 >
                   <FiTrash2 />
                 </button>
               </div>
-              <h1>{user.name}</h1>
-              <p>{user.email}</p>
-              <strong>{user.profile}</strong>
-            </CardUser>
+              <h1>{profile.name}</h1>
+            </CardProfile>
           ))}
-        </UsersContainer>
+        </ProfilesContainer>
       </Content>
     </>
   );
 };
 
-export default Users;
+export default Profiles;

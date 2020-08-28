@@ -47,7 +47,7 @@ export const Content = styled.div`
   display: flex;
 `;
 
-export const UsersContainer = styled.div`
+export const FunctionalitiesContainer = styled.div`
   margin-left: 20px;
   width: 100vw;
   display: grid;
@@ -55,7 +55,7 @@ export const UsersContainer = styled.div`
   grid-gap: 10px;
 `;
 
-export const CardUser = styled.div`
+export const CardFunctionality = styled.div`
   margin: 12px;
   width: 300px;
   height: 150px;

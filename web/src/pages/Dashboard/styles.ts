@@ -21,11 +21,15 @@ export const CardContainer = styled.section`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px;
   margin-top: -110px;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Card = styled.div`
   padding: 22px 32px;
   border-radius: 5px;
+
   ${props =>
     props.className === 'users' &&
     css`

@@ -18,22 +18,22 @@ const Dashboard: React.FC = () => {
               </header>
             </Card>
           </Link>
-          <a href="http://www.google.com.br">
+          <Link to="/profiles">
             <Card className="profiles">
               <header>
                 <h1>Perfis</h1>
                 <FiLock />
               </header>
             </Card>
-          </a>
-          <a href="http://www.google.com.br">
+          </Link>
+          <Link to="/functionalities">
             <Card className="functionalities">
               <header>
                 <h1>Funcionalidades</h1>
                 <FiPenTool />
               </header>
             </Card>
-          </a>
+          </Link>
         </CardContainer>
       </Container>
     </>

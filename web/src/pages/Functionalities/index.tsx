@@ -2,14 +2,7 @@ import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { FormHandles } from '@unform/core';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import {
-  FiMail,
-  FiUser,
-  FiLock,
-  FiPenTool,
-  FiEdit,
-  FiTrash2,
-} from 'react-icons/fi';
+import { FiUser, FiLock, FiPenTool, FiEdit, FiTrash2 } from 'react-icons/fi';
 
 import { Form } from '@unform/web';
 
@@ -26,22 +19,21 @@ import {
   CardContainer,
   Card,
   Content,
-  UsersContainer,
+  FunctionalitiesContainer,
   AnimatedContainer,
-  CardUser,
+  CardFunctionality,
 } from './styles';
 
 interface FormData {
   id: string;
   name: string;
-  email: string;
   profile: string;
 }
-const Users: React.FC = () => {
-  const [users, setUsers] = useState<FormData[]>([]);
+const Functionalities: React.FC = () => {
+  const [functionalities, setFunctionalities] = useState<FormData[]>([]);
   useEffect(() => {
-    api.get('users').then(response => {
-      setUsers(response.data);
+    api.get('functionalities').then(response => {
+      setFunctionalities(response.data);
     });
   }, []);
   const formRef = useRef<FormHandles>(null);
@@ -54,20 +46,17 @@ const Users: React.FC = () => {
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome Obrigatório'),
           profile: Yup.string().required('Nome Obrigatório'),
-          email: Yup.string()
-            .email('Digite um email válido')
-            .required('email obrigatório'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
-        await api.post('/users', data);
+        await api.post('/functionalities', data);
 
         addToast({
           type: 'success',
           title: 'Cadastro efetuado com sucesso',
-          description: `Usuário ${data.name} cadastrado`,
+          description: `Funcionalidade ${data.name} cadastrada`,
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -78,7 +67,7 @@ const Users: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Falha no cadastro',
-          description: 'Perfil inexistente',
+          description: 'verifique as informações e tente novamente',
         });
       }
     },
@@ -87,12 +76,14 @@ const Users: React.FC = () => {
 
   async function handleDeleteUser(id: string) {
     try {
-      await api.delete(`users/${id}`);
-      setUsers(users.filter(user => user.id !== id));
+      await api.delete(`functionalities/${id}`);
+      setFunctionalities(
+        functionalities.filter(functionality => functionality.id !== id),
+      );
     } catch (error) {
       addToast({
         type: 'error',
-        title: 'Falha ao deletar usuário',
+        title: 'Falha ao deletar funcionalidade',
         description: 'tente novamente',
       });
     }
@@ -131,41 +122,43 @@ const Users: React.FC = () => {
       <Content>
         <AnimatedContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Inserir Usuário</h1>
+            <h1>Cadastrar funcionalidade</h1>
 
-            <Input name="name" icon={FiUser} placeholder="Nome" />
-            <Input name="email" icon={FiMail} placeholder="E-mail" />
-            <Input name="profile" icon={FiLock} placeholder="Perfil" />
+            <Input name="name" icon={FiPenTool} placeholder="Funcionalidade" />
+            <Input name="profile" icon={FiUser} placeholder="Perfil" />
 
             <Button type="submit">Cadastrar</Button>
           </Form>
         </AnimatedContainer>
 
-        <UsersContainer>
-          {users.map(user => (
-            <CardUser key={user.id}>
+        <FunctionalitiesContainer>
+          {functionalities.map(functionality => (
+            <CardFunctionality key={functionality.id}>
               <div>
                 <button type="button">
                   <FiEdit />
                 </button>
                 <button
                   onClick={() => {
-                    handleDeleteUser(user.id);
+                    handleDeleteUser(functionality.id);
                   }}
                   type="button"
                 >
                   <FiTrash2 />
                 </button>
               </div>
-              <h1>{user.name}</h1>
-              <p>{user.email}</p>
-              <strong>{user.profile}</strong>
-            </CardUser>
+              <h1>{functionality.name}</h1>
+
+              <strong>
+                Perfil autorizado:
+                {functionality.profile}
+              </strong>
+            </CardFunctionality>
           ))}
-        </UsersContainer>
+        </FunctionalitiesContainer>
       </Content>
     </>
   );
 };
 
-export default Users;
+export default Functionalities;
