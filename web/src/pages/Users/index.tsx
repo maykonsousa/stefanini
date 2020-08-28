@@ -31,15 +31,16 @@ import {
 } from './styles';
 
 interface FormData {
+  id: string;
   name: string;
   email: string;
   profile: string;
 }
 const Users: React.FC = () => {
-  console.log(api.defaults.headers.authorization);
+  const [users, setUsers] = useState<FormData[]>([]);
   useEffect(() => {
     api.get('users').then(response => {
-      console.log(response);
+      setUsers(response.data);
     });
   }, []);
   const formRef = useRef<FormHandles>(null);
@@ -82,6 +83,19 @@ const Users: React.FC = () => {
     },
     [addToast],
   );
+
+  async function handleDeleteUser(id: string) {
+    try {
+      await api.delete(`users/${id}`);
+      setUsers(users.filter(user => user.id !== id));
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Falha ao deletar usuário',
+        description: 'tente novamente',
+      });
+    }
+  }
   return (
     <>
       <Header />
@@ -127,87 +141,26 @@ const Users: React.FC = () => {
         </AnimatedContainer>
 
         <UsersContainer>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
-          <CardUser>
-            <div>
-              <FiEdit />
-              <FiTrash2 />
-            </div>
-            <h1>Maykon Sousa</h1>
-            <p>maykon.sousa@hotmail.com</p>
-            <strong>User</strong>
-          </CardUser>
+          {users.map(user => (
+            <CardUser key={user.id}>
+              <div>
+                <button type="button">
+                  <FiEdit />
+                </button>
+                <button
+                  onClick={() => {
+                    handleDeleteUser(user.id);
+                  }}
+                  type="button"
+                >
+                  <FiTrash2 />
+                </button>
+              </div>
+              <h1>{user.name}</h1>
+              <p>{user.email}</p>
+              <strong>{user.profile}</strong>
+            </CardUser>
+          ))}
         </UsersContainer>
       </Content>
     </>

@@ -71,6 +71,14 @@ export const CardUser = styled.div`
     position: absolute;
     top: 5px;
     right: 5px;
+    button {
+      background: none;
+      border: 0;
+      svg {
+        font-size: 28px;
+        padding: 2px;
+      }
+    }
     svg {
       font-size: 28px;
       padding: 2px;

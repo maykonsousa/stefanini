@@ -30,6 +30,7 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@stefanini:user');
 
     if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
       return { token, user: JSON.parse(user) };
     }
     return {} as AuthData;
