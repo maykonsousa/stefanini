@@ -43,7 +43,7 @@ const Users: React.FC = () => {
     api.get('users').then(response => {
       setUsers(response.data);
     });
-  }, []);
+  }, [users]);
   const formRef = useRef<FormHandles>(null);
   const { addToast } = UseToast();
 

@@ -35,7 +35,7 @@ const Functionalities: React.FC = () => {
     api.get('functionalities').then(response => {
       setFunctionalities(response.data);
     });
-  }, []);
+  }, [functionalities]);
   const formRef = useRef<FormHandles>(null);
   const { addToast } = UseToast();
 
