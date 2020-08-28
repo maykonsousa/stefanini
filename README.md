@@ -48,7 +48,7 @@ O login pode ser feito usando os dados de email `admin@stafanini.com` e a senha 
 ## Sobre do cadastro
 Um novo cadastro pode ser criado tanto pelo prório usuário na tela de registro quanto por outro usuário administrador no Dashboard com algumas ressalvas.
 
-Usuário cadastrado direto na página de registro, pode informar os dados de nome, email e senha, e o seu perfil de usuário será automaticamente `User`
+Usuário cadastrado direto na página de registro, pode informar os dados de nome, email e senha, e o seu perfil de usuário será automaticamente salvo como `Usuário`
 
 Já um usuário cadastrado por um outro usuário logado, deverá informar Nome, email e perfil de usuário. Quanto a senha, será salva automaticamente com a sequência numérica `123456` que poderá ser alterada posteriormente pelo próprio usuário, quando este se logar na aplicação.
 

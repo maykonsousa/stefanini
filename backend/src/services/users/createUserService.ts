@@ -32,7 +32,7 @@ class CreateUserService {
         // se o profile nao for informado, setar para "user"
         // quando o usuário se cadastrar no site
         if (!profile) {
-            profile = 'user';
+            profile = 'Usuário';
         }
 
         const hashedPassword = await hash(password, 8);
