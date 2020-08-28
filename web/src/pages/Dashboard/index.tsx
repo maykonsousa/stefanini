@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiUser, FiLock, FiPenTool } from 'react-icons/fi';
 import Header from '../../components/Header';
 import { Container, CardContainer, Card } from './styles';
-import api from '../../services/api';
 
-const response = api.get('/moviments');
 const Dashboard: React.FC = () => {
   return (
     <>

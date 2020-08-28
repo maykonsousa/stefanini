@@ -49,15 +49,44 @@ export const Content = styled.div`
 
 export const UsersContainer = styled.div`
   margin-left: 20px;
-  border: red solid 1px;
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 32px;
+  grid-gap: 10px;
 `;
 
 export const CardUser = styled.div`
-  border: red solid 1px;
+  margin: 12px;
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+  color: #3a3a3a;
+  position: relative;
+  background: #70c1b3;
+  transition: 0.2s;
+  &:hover {
+    background: ${shade(0.2, '#70c1b3')};
+  }
+  div {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    svg {
+      font-size: 28px;
+      padding: 2px;
+    }
+  }
+  h1 {
+    font-size: 36px;
+    padding: 10px;
+    padding-top: 30px;
+  }
+  p {
+    padding-left: 10px;
+  }
+  strong {
+    padding-left: 10px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -70,6 +99,9 @@ export const CardContainer = styled.section`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px;
   margin-top: -110px;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const Card = styled.div`

@@ -26,8 +26,8 @@ const AuthContext = createContext<AuthContextDTO>({} as AuthContextDTO);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState(() => {
-    const token = localStorage.getItem('@AppAlmox:token');
-    const user = localStorage.getItem('@AppAlmox:user');
+    const token = localStorage.getItem('@stefanini:token');
+    const user = localStorage.getItem('@stefanini:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -42,17 +42,20 @@ const AuthProvider: React.FC = ({ children }) => {
     });
     const { token, user } = response.data;
 
-    localStorage.setItem('@AppAlmox:token', token);
-    localStorage.setItem('@AppAlmox:user', JSON.stringify(user));
+    localStorage.setItem('@stefanini:token', token);
+    localStorage.setItem('@stefanini:user', JSON.stringify(user));
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@AppAlmox:token');
-    localStorage.removeItem('@AppAlmox:user');
+    localStorage.removeItem('@stefanini:token');
+    localStorage.removeItem('@stefanini:user');
 
     setData({} as AuthData);
   }, []);
+
   return (
     <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}

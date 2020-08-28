@@ -1,11 +1,16 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useEffect, useState } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { FiMail, FiUser, FiLock, FiPenTool } from 'react-icons/fi';
+import {
+  FiMail,
+  FiUser,
+  FiLock,
+  FiPenTool,
+  FiEdit,
+  FiTrash2,
+} from 'react-icons/fi';
 
 import { Form } from '@unform/web';
-
-import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 import { UseToast } from '../../hooks/Toast';
@@ -31,6 +36,12 @@ interface FormData {
   profile: string;
 }
 const Users: React.FC = () => {
+  console.log(api.defaults.headers.authorization);
+  useEffect(() => {
+    api.get('users').then(response => {
+      console.log(response);
+    });
+  }, []);
   const formRef = useRef<FormHandles>(null);
   const { addToast } = UseToast();
 
@@ -114,8 +125,89 @@ const Users: React.FC = () => {
             <Button type="submit">Cadastrar</Button>
           </Form>
         </AnimatedContainer>
+
         <UsersContainer>
-          <CardUser />
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
+          <CardUser>
+            <div>
+              <FiEdit />
+              <FiTrash2 />
+            </div>
+            <h1>Maykon Sousa</h1>
+            <p>maykon.sousa@hotmail.com</p>
+            <strong>User</strong>
+          </CardUser>
         </UsersContainer>
       </Content>
     </>
