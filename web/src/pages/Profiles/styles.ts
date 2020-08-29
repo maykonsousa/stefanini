@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 0;
 `;
 const AppearRightToLeft = keyframes`
   from{
@@ -39,6 +39,9 @@ export const AnimatedContainer = styled.div`
       color: ${shade(0.4, '#ff9000')};
     }
   }
+  h1 {
+    margin-bottom: 10px;
+  }
   animation: ${AppearRightToLeft} 1s;
 `;
 export const Content = styled.div`
@@ -57,9 +60,8 @@ export const ProfilesContainer = styled.div`
 `;
 
 export const CardProfile = styled.div`
-  margin: 12px;
-  width: 300px;
-  height: 150px;
+  width: 280px;
+  height: 100px;
   border-radius: 10px;
   color: #3a3a3a;
   position: relative;
@@ -85,8 +87,8 @@ export const CardProfile = styled.div`
       padding: 2px;
     }
   }
-  h1 {
-    font-size: 36px;
+  h2 {
+    font-size: 24px;
     padding: 30px;
     padding-top: 30px;
   }

@@ -144,7 +144,7 @@ const Profiles: React.FC = () => {
                   <FiTrash2 />
                 </button>
               </div>
-              <h1>{profile.name}</h1>
+              <h2>{profile.name}</h2>
             </CardProfile>
           ))}
         </ProfilesContainer>

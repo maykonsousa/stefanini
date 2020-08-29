@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 0px;
 `;
 const AppearRightToLeft = keyframes`
   from{
@@ -38,6 +38,9 @@ export const AnimatedContainer = styled.div`
       color: ${shade(0.4, '#ff9000')};
     }
   }
+  h1 {
+    padding-bottom: 10px;
+  }
   animation: ${AppearRightToLeft} 1s;
 `;
 export const Content = styled.div`
@@ -49,15 +52,14 @@ export const Content = styled.div`
 
 export const UsersContainer = styled.div`
   margin-left: 20px;
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
 `;
 
 export const CardUser = styled.div`
-  margin: 12px;
-  width: 300px;
+  width: 275px;
   height: 150px;
   border-radius: 10px;
   color: #3a3a3a;
@@ -85,7 +87,7 @@ export const CardUser = styled.div`
     }
   }
   h1 {
-    font-size: 36px;
+    font-size: 26px;
     padding: 10px;
     padding-top: 30px;
   }
@@ -105,7 +107,7 @@ export const Title = styled.h1`
 export const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 32px;
+  grid-gap: 10px;
   margin-top: -110px;
   a {
     text-decoration: none;
@@ -157,52 +159,5 @@ export const Card = styled.div`
     font-size: 36px;
     font-weight: normal;
     line-height: 54px;
-  }
-`;
-
-export const TableContainer = styled.section`
-  margin-top: 64px;
-
-  table {
-    width: 100%;
-    border-spacing: 0 8px;
-
-    th {
-      color: #969cb3;
-      font-weight: normal;
-      padding: 20px 32px;
-      text-align: left;
-      font-size: 16px;
-      line-height: 24px;
-    }
-
-    td {
-      padding: 20px 32px;
-      border: 0;
-      background: #fff;
-      font-size: 16px;
-      font-weight: normal;
-      color: #969cb3;
-
-      &.title {
-        color: #363f5f;
-      }
-
-      &.income {
-        color: #12a454;
-      }
-
-      &.outcome {
-        color: #e83f5b;
-      }
-    }
-
-    td:first-child {
-      border-radius: 8px 0 0 8px;
-    }
-
-    td:last-child {
-      border-radius: 0 8px 8px 0;
-    }
   }
 `;
